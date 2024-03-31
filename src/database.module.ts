@@ -1,6 +1,6 @@
 import { Module, DynamicModule, Global } from "@nestjs/common";
 import { PrismaService } from "./database.service";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "./prisma-client";
 
 @Global()
 @Module({})
