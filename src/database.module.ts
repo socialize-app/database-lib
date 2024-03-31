@@ -8,6 +8,7 @@ export class DatabaseModule {
   private static createDynamicModule(
     options: Prisma.PrismaClientOptions
   ): DynamicModule {
+    console.log("Creating dynamic module...");
     return {
       module: DatabaseModule,
       providers: [
