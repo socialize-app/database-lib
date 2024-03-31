@@ -36,7 +36,13 @@ export class DatabaseModule {
     const providers = [
       {
         provide: PrismaService,
-        useFactory: options.useFactory,
+        useFactory: async (...args: any[]) => {
+          const prismaOptions = await options.useFactory(...args);
+          if (!prismaOptions) {
+            throw new Error('Prisma options must be provided');
+          }
+          return new PrismaService(prismaOptions);
+        },
         inject: options.inject || [],
       },
     ];

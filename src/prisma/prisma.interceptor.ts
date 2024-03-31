@@ -6,7 +6,7 @@ import {
 } from "@nestjs/common";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../prisma-client";
 
 @Injectable()
 export class PrismaExceptionInterceptor implements NestInterceptor {

@@ -7,10 +7,10 @@ export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
- /*  constructor(private readonly prismaOptions?: Prisma.PrismaClientOptions) {
-    // checkEnvironment(prismaOptions);
+  constructor(private readonly prismaOptions?: Prisma.PrismaClientOptions) {
+    checkEnvironment(prismaOptions);
     super(prismaOptions);
-  } */
+  }
 
   // Connect to the database when the module is initialized
   async onModuleInit() {
