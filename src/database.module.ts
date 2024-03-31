@@ -1,5 +1,5 @@
-/* import { Module, DynamicModule, Global } from "@nestjs/common";
-import { PrismaService } from "./database.service";
+import { Module, DynamicModule, Global } from "@nestjs/common";
+import { PrismaService } from "./prisma/prisma.service";
 import { Prisma } from "./prisma-client";
 
 @Global()
@@ -8,7 +8,6 @@ export class DatabaseModule {
   private static createDynamicModule(
     options: Prisma.PrismaClientOptions
   ): DynamicModule {
-    console.log("Creating dynamic module...");
     return {
       module: DatabaseModule,
       providers: [
@@ -21,10 +20,12 @@ export class DatabaseModule {
     };
   }
 
+  // Synchronously create a dynamic module
   static forRoot(options: Prisma.PrismaClientOptions): DynamicModule {
     return this.createDynamicModule(options);
   }
 
+  // Asynchronously create a dynamic module
   static forRootAsync(options: {
     imports?: any[];
     useFactory: (
@@ -46,29 +47,4 @@ export class DatabaseModule {
       exports: providers,
     };
   }
-
-  static register(options: Prisma.PrismaClientOptions): DynamicModule {
-    return this.createDynamicModule(options);
-  }
-
-  static registerAsync(options: {
-    useFactory: () => Prisma.PrismaClientOptions;
-  }): DynamicModule {
-    return this.createDynamicModule(options.useFactory());
-  }
-
-  static forFeature() {
-    // This method is a placeholder for future use
-  }
 }
- */
-
-import { Module, Global } from "@nestjs/common";
-import { PrismaService } from "./database.service";
-
-@Global()
-@Module({
-  providers: [PrismaService],
-  exports: [PrismaService],
-})
-export class DatabaseModule {}
