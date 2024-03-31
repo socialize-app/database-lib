@@ -10,8 +10,7 @@
   "scripts": {
     "dev": "tsc -w",
     "build": "rimraf dist && tsc",
-    "prepublish": "npm run build",
-    "postinstall": "tsc && cp src/index.d.ts dist/index.d.ts && npx prisma generate"
+    "prepublish": "npm run build"
   },
   "keywords": [],
   "author": "",
