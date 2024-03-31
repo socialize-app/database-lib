@@ -6,7 +6,7 @@ import { Prisma } from "./prisma-client";
 @Module({})
 export class DatabaseModule {
   private static createDynamicModule(
-    options: Prisma.PrismaClientOptions
+    options?: Prisma.PrismaClientOptions
   ): DynamicModule {
     return {
       module: DatabaseModule,
@@ -21,7 +21,7 @@ export class DatabaseModule {
   }
 
   // Synchronously create a dynamic module
-  static forRoot(options: Prisma.PrismaClientOptions): DynamicModule {
+  static forRoot(options?: Prisma.PrismaClientOptions): DynamicModule {
     return this.createDynamicModule(options);
   }
 
@@ -30,7 +30,7 @@ export class DatabaseModule {
     imports?: any[];
     useFactory: (
       ...args: any[]
-    ) => Promise<Prisma.PrismaClientOptions> | Prisma.PrismaClientOptions;
+    ) => Promise<Prisma.PrismaClientOptions | undefined> | Prisma.PrismaClientOptions | undefined;
     inject?: any[];
   }): DynamicModule {
     const providers = [
