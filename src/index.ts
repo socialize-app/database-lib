@@ -1,3 +1,3 @@
 export * from "./database.module";
 export * from "./database.service";
-export * from "./prisma-client/index.d";
+export * from "./prisma-client";
