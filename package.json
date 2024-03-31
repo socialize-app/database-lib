@@ -28,5 +28,8 @@
     "@types/node": "^20.11.30",
     "rimraf": "^5.0.5",
     "typescript": "^5.4.3"
+  },
+  "peerDependencies": {
+    "prisma": "^5.11.0"
   }
 }
