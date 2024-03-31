@@ -1,4 +1,4 @@
-import { Module, DynamicModule, Global } from "@nestjs/common";
+/* import { Module, DynamicModule, Global } from "@nestjs/common";
 import { PrismaService } from "./database.service";
 import { Prisma } from "./prisma-client";
 
@@ -61,3 +61,14 @@ export class DatabaseModule {
     // This method is a placeholder for future use
   }
 }
+ */
+
+import { Module, Global } from "@nestjs/common";
+import { PrismaService } from "./database.service";
+
+@Global()
+@Module({
+  providers: [PrismaService],
+  exports: [PrismaService],
+})
+export class DatabaseModule {}
