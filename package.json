@@ -11,7 +11,7 @@
     "dev": "tsc -w",
     "build": "rimraf dist && tsc",
     "prepublish": "npm run build",
-    "postinstall": "tsc && npx prisma generate"
+    "postinstall": "tsc && cp src/prisma-client/* dist/prisma-client/  npx prisma generate"
   },
   "keywords": [],
   "author": "",
