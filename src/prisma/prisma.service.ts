@@ -1,4 +1,4 @@
-import { Injectable, OnModuleInit, OnModuleDestroy } from "@nestjs/common";
+import { Injectable, OnModuleInit, OnModuleDestroy, Logger } from "@nestjs/common";
 import { Prisma, PrismaClient } from "../prisma-client";
 import { checkEnvironment } from "./setup.utils";
 
@@ -7,18 +7,20 @@ export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
+  private logger: Logger;
   constructor(private readonly prismaOptions?: Prisma.PrismaClientOptions) {
     checkEnvironment(prismaOptions);
     super(prismaOptions);
+    this.logger = new Logger(PrismaService.name);
   }
 
   // Connect to the database when the module is initialized
   async onModuleInit() {
     try {
       await this.$connect();
-      console.log("Connected to the database");
+      this.logger.log("Connected to the database");
     } catch (error) {
-      console.error("Error connecting to the database", error);
+      this.logger.error("Error connecting to the database", error);
       throw error;
     }
   }
@@ -27,9 +29,9 @@ export class PrismaService
   async onModuleDestroy() {
     try {
       await this.$disconnect();
-      console.log("Disconnected from the database");
+      this.logger.log("Disconnected from the database");
     } catch (error) {
-      console.error("Error disconnecting from the database", error);
+      this.logger.error("Error disconnecting from the database", error);
       throw error;
     }
   }
